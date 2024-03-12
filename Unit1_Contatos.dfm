@@ -10,6 +10,9 @@ object Form_Contatos: TForm_Contatos
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OldCreateOrder = True
+  OnCreate = FormCreate
+  PixelsPerInch = 96
   TextHeight = 15
   object Label1: TLabel
     Left = 24
@@ -70,7 +73,6 @@ object Form_Contatos: TForm_Contatos
     Height = 23
     Enabled = False
     TabOrder = 0
-    Text = '1'
   end
   object Edit2: TEdit
     Left = 87
@@ -78,7 +80,6 @@ object Form_Contatos: TForm_Contatos
     Width = 121
     Height = 23
     TabOrder = 1
-    Text = 'Aline'
   end
   object Edit3: TEdit
     Left = 87
@@ -86,7 +87,6 @@ object Form_Contatos: TForm_Contatos
     Width = 121
     Height = 23
     TabOrder = 2
-    Text = '14996117854'
   end
   object Edit4: TEdit
     Left = 87
@@ -94,21 +94,20 @@ object Form_Contatos: TForm_Contatos
     Width = 121
     Height = 23
     TabOrder = 3
-    Text = 'aline@gmail.com'
   end
   object DBNavigator1: TDBNavigator
-    Left = 248
-    Top = 95
+    Left = 24
+    Top = 227
     Width = 240
     Height = 25
     DataSource = DataSource1
     TabOrder = 4
   end
   object DBGrid1: TDBGrid
-    Left = 248
-    Top = 132
-    Width = 320
-    Height = 120
+    Left = 24
+    Top = 258
+    Width = 721
+    Height = 176
     DataSource = DataSource1
     ReadOnly = True
     TabOrder = 5
@@ -120,10 +119,10 @@ object Form_Contatos: TForm_Contatos
     OnDblClick = DBGrid1DblClick
   end
   object Memo1: TMemo
-    Left = 24
-    Top = 163
-    Width = 209
-    Height = 89
+    Left = 214
+    Top = 39
+    Width = 543
+    Height = 110
     TabOrder = 6
   end
   object Button1: TButton
@@ -138,22 +137,14 @@ object Form_Contatos: TForm_Contatos
   object FDConnection1: TFDConnection
     Params.Strings = (
       
-        'Database=C:\Users\Aline\Documents\Embarcadero\Studio\Projects\Wi' +
-        'n32\Debug\Assets\Contatos.mdb'
+        'Database=C:\Alternativa\Estudos\Aline\Projeto_contatos_Delphi\Co' +
+        'ntatos.mdb'
       'DriverID=MSAcc')
-    Connected = True
     LoginPrompt = False
     Left = 688
     Top = 272
   end
-  object BindSourceContatos: TBindSourceDB
-    DataSet = FDTableContatos
-    ScopeMappings = <>
-    Left = 688
-    Top = 208
-  end
   object FDTableContatos: TFDTable
-    Active = True
     IndexFieldNames = 'Id'
     Connection = FDConnection1
     ResourceOptions.AssignedValues = [rvEscapeExpand]
@@ -168,36 +159,36 @@ object Form_Contatos: TForm_Contatos
     Top = 141
     object LinkControlToField1: TLinkControlToField
       Category = 'Quick Bindings'
-      DataSource = BindSourceContatos
-      FieldName = 'Id'
+      DataSource = BindSourceDBContatos
+      FieldName = 'ID'
       Control = Edit1
       Track = True
     end
     object LinkControlToField2: TLinkControlToField
       Category = 'Quick Bindings'
-      DataSource = BindSourceContatos
-      FieldName = 'nome'
+      DataSource = BindSourceDBContatos
+      FieldName = 'NOME'
       Control = Edit2
       Track = True
     end
     object LinkControlToField3: TLinkControlToField
       Category = 'Quick Bindings'
-      DataSource = BindSourceContatos
-      FieldName = 'telefone'
+      DataSource = BindSourceDBContatos
+      FieldName = 'TELEFONE'
       Control = Edit3
       Track = True
     end
     object LinkControlToField4: TLinkControlToField
       Category = 'Quick Bindings'
-      DataSource = BindSourceContatos
-      FieldName = 'email'
+      DataSource = BindSourceDBContatos
+      FieldName = 'EMAIL'
       Control = Edit4
       Track = True
     end
     object LinkControlToField5: TLinkControlToField
       Category = 'Quick Bindings'
-      DataSource = BindSourceContatos
-      FieldName = 'Observa'#231#245'es'
+      DataSource = BindSourceDBContatos
+      FieldName = 'OBSERVACOES'
       Control = Memo1
       Track = False
     end
@@ -206,5 +197,34 @@ object Form_Contatos: TForm_Contatos
     DataSet = FDTableContatos
     Left = 696
     Top = 80
+  end
+  object FDMSAccessService1: TFDMSAccessService
+    DriverLink = FDPhysMSAccessDriverLink1
+    Left = 688
+    Top = 320
+  end
+  object FDPhysMSAccessDriverLink1: TFDPhysMSAccessDriverLink
+    Left = 688
+    Top = 376
+  end
+  object FDQueryContatos: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'CREATE TABLE Contatos ('
+      '  ID COUNTER,'
+      '  NOME VARCHAR,'
+      '  TELEFONE VARCHAR,'
+      '  OBSERVACOES VARCHAR,'
+      '  EMAIL VARCHAR,'
+      '  CONSTRAINT PK PRIMARY KEY (Id)'
+      ')')
+    Left = 592
+    Top = 24
+  end
+  object BindSourceDBContatos: TBindSourceDB
+    DataSet = FDTableContatos
+    ScopeMappings = <>
+    Left = 688
+    Top = 200
   end
 end
